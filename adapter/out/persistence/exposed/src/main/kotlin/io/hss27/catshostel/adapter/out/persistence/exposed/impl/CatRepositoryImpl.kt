@@ -9,7 +9,7 @@ import io.hss27.catshostel.application.domain.vo.Name
 import io.hss27.catshostel.application.port.out.CatRepository
 
 class CatRepositoryImpl : CatRepository {
-    override fun findByOrderByName(): Cats {
+    override fun findByOrderById(): Cats {
         return CatEntity.all().sortedBy { it.name }.toCats()
     }
 

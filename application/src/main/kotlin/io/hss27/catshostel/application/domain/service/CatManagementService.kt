@@ -19,7 +19,7 @@ class CatManagementService(
 
     override fun findById(query: FindCatQuery): Cat? = catRepository.findById(query.id)
 
-    override fun findAll(): Cats = catRepository.findByOrderByName()
+    override fun findAll(): Cats = catRepository.findByOrderById()
 
     override fun modify(command: ModifyCatCommand) {
         catRepository.update(
