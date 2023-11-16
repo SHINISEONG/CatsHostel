@@ -1,4 +1,4 @@
-package io.hss27.catshostel.application.port.out.persistence
+package io.hss27.catshostel.application.port.out
 
 import io.hss27.catshostel.application.domain.aggregate.Cats
 import io.hss27.catshostel.application.domain.entity.Cat

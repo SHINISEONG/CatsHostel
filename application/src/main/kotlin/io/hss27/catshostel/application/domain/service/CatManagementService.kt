@@ -8,7 +8,7 @@ import io.hss27.catshostel.application.port.`in`.command.DeleteCatCommand
 import io.hss27.catshostel.application.port.`in`.command.ModifyCatCommand
 import io.hss27.catshostel.application.port.`in`.query.FindCatQuery
 import io.hss27.catshostel.application.port.`in`.usecase.CatManagementUseCase
-import io.hss27.catshostel.application.port.out.persistence.CatRepository
+import io.hss27.catshostel.application.port.out.CatRepository
 
 class CatManagementService(
     private val catRepository: CatRepository

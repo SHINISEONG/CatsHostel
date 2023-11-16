@@ -6,7 +6,7 @@ import io.hss27.catshostel.application.domain.entity.Cat
 import io.hss27.catshostel.application.domain.vo.Age
 import io.hss27.catshostel.application.domain.vo.CatId
 import io.hss27.catshostel.application.domain.vo.Name
-import io.hss27.catshostel.application.port.out.persistence.CatRepository
+import io.hss27.catshostel.application.port.out.CatRepository
 
 class CatRepositoryImpl : CatRepository {
     override fun findByOrderByName(): Cats {
