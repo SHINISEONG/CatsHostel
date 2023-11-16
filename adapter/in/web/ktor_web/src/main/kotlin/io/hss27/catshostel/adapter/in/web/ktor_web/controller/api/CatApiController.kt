@@ -3,6 +3,7 @@ package io.hss27.catshostel.adapter.`in`.web.ktor_web.controller.api
 import io.hss27.catshostel.adapter.`in`.web.ktor_web.dto.request.command.CreateCatCommandDto
 import io.hss27.catshostel.adapter.`in`.web.ktor_web.dto.request.command.ModifyCatCommandDto
 import io.hss27.catshostel.adapter.`in`.web.ktor_web.dto.response.toCatResponseDto
+import io.hss27.catshostel.adapter.`in`.web.ktor_web.dto.response.toCatsResponseDto
 import io.hss27.catshostel.application.domain.vo.CatId
 import io.hss27.catshostel.application.port.`in`.command.DeleteCatCommand
 import io.hss27.catshostel.application.port.`in`.query.FindCatQuery
@@ -14,6 +15,10 @@ import io.ktor.server.routing.*
 
 fun Route.catApiController(catManagementService: CatManagementUseCase) {
     route("cats") {
+        get("") {
+            call.respond(catManagementService.findAll().toCatsResponseDto())
+        }
+
         get("{id}") {
             val id = requireNotNull(call.parameters["id"]).toInt()
             val response = catManagementService.findById(FindCatQuery(CatId(id)))?.toCatResponseDto()
