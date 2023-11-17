@@ -9,7 +9,7 @@ import io.hss27.catshostel.application.port.`in`.query.FindCatQuery
 
 interface CatManagementUseCase {
     fun register(command: CreateCatCommand): Cat
-    fun findById(query: FindCatQuery): Cat?
+    fun findById(query: FindCatQuery): Cat
     fun findAll(): Cats
     fun modify(command: ModifyCatCommand): Cat
     fun delete(deleteCatCommand: DeleteCatCommand): Cat

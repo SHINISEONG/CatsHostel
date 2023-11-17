@@ -15,7 +15,7 @@ class TransactionalCatManagementService(private val catManagementService: CatMan
         catManagementService.delete(deleteCatCommand)
     }
 
-    override fun findById(query: FindCatQuery): Cat? = transaction {
+    override fun findById(query: FindCatQuery): Cat = transaction {
         catManagementService.findById(query)
     }
 
