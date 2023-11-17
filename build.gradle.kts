@@ -12,8 +12,8 @@ allprojects {
         google()
         mavenCentral()
     }
-}
 
-subprojects {
     group = "io.hss27.catshostel"
 }
+
+

@@ -4,12 +4,12 @@ val logback_version: String by project
 
 plugins {
     kotlin("jvm")
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.20"
+    kotlin("plugin.serialization") version "1.9.20"
 }
 
 dependencies {
     implementation(project(":application"))
-    
+
     api("io.ktor:ktor-server-core-jvm:$ktor_version")
     api("io.ktor:ktor-server-content-negotiation-jvm:$ktor_version")
     api("io.ktor:ktor-serialization-kotlinx-json-jvm:$ktor_version")
