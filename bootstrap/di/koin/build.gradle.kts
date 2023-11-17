@@ -6,7 +6,6 @@ plugins {
 
 dependencies {
     implementation(project(":application"))
-    implementation(project(":common"))
     implementation(project(":adapter:in:web:ktor_web"))
     implementation(project(":adapter:out:persistence:exposed"))
     implementation(project(":bootstrap:transaction:exposed_transaction"))

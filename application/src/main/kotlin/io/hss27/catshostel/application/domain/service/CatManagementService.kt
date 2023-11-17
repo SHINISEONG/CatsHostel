@@ -8,21 +8,19 @@ import io.hss27.catshostel.application.port.`in`.command.DeleteCatCommand
 import io.hss27.catshostel.application.port.`in`.command.ModifyCatCommand
 import io.hss27.catshostel.application.port.`in`.query.FindCatQuery
 import io.hss27.catshostel.application.port.`in`.usecase.CatManagementUseCase
-import io.hss27.catshostel.application.port.out.CatRepository
+import io.hss27.catshostel.application.port.out.CatCommandRepository
+import io.hss27.catshostel.application.port.out.CatQueryRepository
 
 class CatManagementService(
-    private val catRepository: CatRepository
+    private val catCommandRepository: CatCommandRepository,
+    private val catQueryRepository: CatQueryRepository
 ) : CatManagementUseCase {
-    override fun delete(deleteCatCommand: DeleteCatCommand) {
-        catRepository.delete(CatId(deleteCatCommand.id.value))
-    }
+    override fun findById(query: FindCatQuery): Cat = catQueryRepository.findById(query.id)
 
-    override fun findById(query: FindCatQuery): Cat? = catRepository.findById(query.id)
+    override fun findAll(): Cats = catQueryRepository.findByOrderById()
 
-    override fun findAll(): Cats = catRepository.findByOrderById()
-
-    override fun modify(command: ModifyCatCommand) {
-        catRepository.update(
+    override fun modify(command: ModifyCatCommand): Cat {
+        return catCommandRepository.update(
             Cat(
                 id = command.id,
                 name = command.name,
@@ -30,11 +28,10 @@ class CatManagementService(
                 species = command.species
             )
         )
-
     }
 
-    override fun register(command: CreateCatCommand) {
-        catRepository.save(
+    override fun register(command: CreateCatCommand): Cat {
+        return catCommandRepository.save(
             Cat(
                 id = CatId(0),
                 name = command.name,
@@ -42,5 +39,9 @@ class CatManagementService(
                 species = command.species
             )
         )
+    }
+
+    override fun delete(deleteCatCommand: DeleteCatCommand): Cat {
+        return catCommandRepository.delete(CatId(deleteCatCommand.id.value))
     }
 }

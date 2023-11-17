@@ -9,7 +9,7 @@ plugins {
 
 dependencies {
     implementation(project(":application"))
-    implementation(project(":common"))
+    
     api("io.ktor:ktor-server-core-jvm:$ktor_version")
     api("io.ktor:ktor-server-content-negotiation-jvm:$ktor_version")
     api("io.ktor:ktor-serialization-kotlinx-json-jvm:$ktor_version")

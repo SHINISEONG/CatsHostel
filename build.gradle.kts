@@ -7,12 +7,6 @@ plugins {
     kotlin("jvm") version "1.9.20" apply false
 }
 
-
-
-repositories {
-    mavenCentral()
-}
-
 allprojects {
     repositories {
         google()
