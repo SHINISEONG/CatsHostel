@@ -11,9 +11,8 @@ import org.jetbrains.exposed.sql.transactions.transaction
 
 class TransactionalCatManagementService(private val catManagementService: CatManagementUseCase) : CatManagementUseCase {
 
-    override fun delete(deleteCatCommand: DeleteCatCommand): Cat {
-        val result = catManagementService.delete(deleteCatCommand)
-        return transaction { result }
+    override fun delete(deleteCatCommand: DeleteCatCommand): Cat = transaction {
+       catManagementService.delete(deleteCatCommand)
     }
 
 
