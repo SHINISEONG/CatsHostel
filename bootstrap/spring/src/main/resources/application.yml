@@ -1,0 +1,8 @@
+spring:
+  sql:
+    init:
+      mode: never
+  r2dbc:
+    url: r2dbc:mssql://localhost:1433/cat_database
+    username: imtsoft
+    password: Imt050311

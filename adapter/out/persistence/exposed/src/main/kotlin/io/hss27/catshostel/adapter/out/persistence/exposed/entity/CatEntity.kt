@@ -11,5 +11,6 @@ class CatEntity(id: EntityID<Int>) : IntEntity(id) {
     var name by CatTable.name
     var age by CatTable.age
     var species by CatTable.species
+    var updatedAt by CatTable.updatedAt
 
 }

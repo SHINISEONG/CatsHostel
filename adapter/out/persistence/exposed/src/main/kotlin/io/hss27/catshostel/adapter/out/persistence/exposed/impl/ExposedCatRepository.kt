@@ -9,22 +9,21 @@ import io.hss27.catshostel.application.domain.vo.CatId
 import io.hss27.catshostel.application.domain.vo.Name
 import io.hss27.catshostel.application.port.out.CatCommandRepository
 import io.hss27.catshostel.application.port.out.CatQueryRepository
+import java.time.LocalDateTime
 
-class CatRepositoryImpl : CatCommandRepository, CatQueryRepository {
-    override fun findByOrderById(): Cats {
-        return CatEntity.all().sortedBy { it.id }.toCats()
-    }
+class ExposedCatRepository : CatCommandRepository, CatQueryRepository {
+    override fun findByOrderById(): Cats = CatEntity.all().sortedBy { it.id }.toCats()
 
-    override fun findById(id: CatId): Cat {
-        return loadById(id).toCat()
-    }
 
-    override fun save(cat: Cat): Cat =
-        CatEntity.new {
-            name = cat.name.value
-            age = cat.age.value
-            species = cat.species
-        }.toCat()
+    override fun findById(id: CatId): Cat = loadById(id).toCat()
+
+
+    override fun save(cat: Cat): Cat = CatEntity.new {
+        name = cat.name.value
+        age = cat.age.value
+        species = cat.species
+    }.toCat()
+
 
     override fun update(cat: Cat): Cat {
         val catEntity = loadById(cat.id)
@@ -32,6 +31,7 @@ class CatRepositoryImpl : CatCommandRepository, CatQueryRepository {
         catEntity.name = cat.name.value
         catEntity.age = cat.age.value
         catEntity.species = cat.species
+        catEntity.updatedAt = LocalDateTime.now()
 
         return catEntity.toCat()
     }
@@ -45,9 +45,7 @@ class CatRepositoryImpl : CatCommandRepository, CatQueryRepository {
         return cat
     }
 
-    private fun loadById(id: CatId): CatEntity {
-        return CatEntity.findById(id.value) ?: throw CatExceptions.notFound(id)
-    }
+    private fun loadById(id: CatId): CatEntity = CatEntity.findById(id.value) ?: throw CatExceptions.notFound(id)
 
     private fun List<CatEntity>.toCats(): Cats {
         return Cats(cats = map { it.toCat() })
