@@ -42,6 +42,6 @@ class CatManagementService(
     }
 
     override fun delete(deleteCatCommand: DeleteCatCommand): Cat {
-        return catCommandRepository.delete(CatId(deleteCatCommand.id.value))
+        return catCommandRepository.delete(deleteCatCommand.id)
     }
 }

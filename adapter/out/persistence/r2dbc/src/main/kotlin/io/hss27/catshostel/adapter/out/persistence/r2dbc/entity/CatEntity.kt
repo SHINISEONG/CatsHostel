@@ -7,14 +7,17 @@ import io.hss27.catshostel.application.domain.vo.Name
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.PersistenceCreator
 import org.springframework.data.relational.core.mapping.Table
+import java.time.LocalDateTime
 
-@Table("cat")
+@Table("cats")
 class CatEntity @PersistenceCreator constructor(
     @Id
     var id: Int = 0,
     private val age: Int,
     private val name: String,
-    private val species: String
+    private val species: String,
+    private val createdAt: LocalDateTime,
+    private val updatedAt: LocalDateTime
 ) {
     fun toDomain(): Cat = Cat(
         id = CatId(id),
@@ -33,7 +36,9 @@ fun Cat.toEntity(): CatEntity = CatEntity(
     id = id.value,
     name = name.value,
     age = age.value,
-    species = species
+    species = species,
+    createdAt = LocalDateTime.now(),
+    updatedAt = LocalDateTime.now()
 )
 
 
