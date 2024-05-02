@@ -9,10 +9,10 @@ import io.hss27.catshostel.application.port.`in`.command.ModifyCatCommand
 import io.hss27.catshostel.application.port.`in`.query.FindCatQuery
 import io.hss27.catshostel.application.port.`in`.usecase.ReactiveCatManagementUseCase
 import io.hss27.catshostel.application.port.out.ReactiveCatQueryRepository
-import io.hss27.catshostel.application.port.out.ReativeCatCommandRepository
+import io.hss27.catshostel.application.port.out.ReactiveCatCommandRepository
 
 class ReactiveCatManagementService(
-    private val catCommandRepository: ReativeCatCommandRepository,
+    private val catCommandRepository: ReactiveCatCommandRepository,
     private val catQueryRepository: ReactiveCatQueryRepository
 ) : ReactiveCatManagementUseCase {
     override suspend fun findById(query: FindCatQuery): Cat = catQueryRepository.findById(query.id)

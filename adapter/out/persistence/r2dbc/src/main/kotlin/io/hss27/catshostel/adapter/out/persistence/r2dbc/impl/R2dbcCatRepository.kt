@@ -7,7 +7,7 @@ import io.hss27.catshostel.application.domain.entity.Cat
 import io.hss27.catshostel.application.domain.exceptions.CatExceptions
 import io.hss27.catshostel.application.domain.vo.CatId
 import io.hss27.catshostel.application.port.out.ReactiveCatQueryRepository
-import io.hss27.catshostel.application.port.out.ReativeCatCommandRepository
+import io.hss27.catshostel.application.port.out.ReactiveCatCommandRepository
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.reactive.awaitSingle
@@ -20,7 +20,7 @@ import org.springframework.data.relational.core.query.Query.query
 
 class R2dbcCatRepository(
     private val entityTemplate: R2dbcEntityTemplate
-) : ReactiveCatQueryRepository, ReativeCatCommandRepository {
+) : ReactiveCatQueryRepository, ReactiveCatCommandRepository {
     private val entityClass = CatEntity::class.java
     override suspend fun save(cat: Cat): Cat =
         entityTemplate.insert(cat.toEntity()).awaitSingle().toDomain()
